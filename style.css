@@ -1,0 +1,240 @@
+/* =========================================
+   1. 全域色彩與字體設定
+========================================= */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&family=Noto+Sans+TC:wght@400;700&display=swap');
+
+:root {
+  --header-bg: #0A1128; 
+  --header-text: #FFFFFF;
+  --header-accent: #0033FF; 
+
+  --project-bg: #121A35; 
+  --project-text-title: #FFFFFF;
+  --project-text-p: #B0B7C9;
+  --project-accent: #0033FF; 
+}
+
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: 'Montserrat', 'Noto Sans TC', sans-serif;
+  line-height: 1.6;
+  background-color: var(--header-bg);
+  /* 隱藏網頁本身的垂直滾動條 */
+  overflow: hidden; 
+}
+
+/* 主題 Class 示範 */
+.theme-dragon-fruit {
+  --project-bg: #ffffff;
+  --project-text-title: #111111;
+  --project-text-p: #555555;
+  --project-accent: #E32E59;
+}
+.theme-dark-tech {
+  --project-bg: #1A1A1D;
+  --project-text-title: #EEEEEE;
+  --project-text-p: #999999;
+  --project-accent: #00FFCC;
+}
+
+/* =========================================
+   2. 頂部固定選單 (導覽列)
+========================================= */
+.fixed-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 80px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 0 50px;
+  box-sizing: border-box;
+  z-index: 9999;
+  background: linear-gradient(to bottom, rgba(10, 17, 40, 0.8), transparent);
+}
+
+.fixed-nav a {
+  color: rgba(255, 255, 255, 0.6);
+  text-decoration: none;
+  margin-left: 40px;
+  font-size: 0.85rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  transition: color 0.3s;
+}
+
+.fixed-nav a:hover {
+  color: #FFFFFF;
+}
+
+/* =========================================
+   3. 橫向滾動核心容器
+========================================= */
+.horizontal-scroll-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap; 
+  height: 100vh;
+  width: 100vw;
+  overflow-x: auto; 
+  overflow-y: hidden;
+  scrollbar-width: none; 
+  -ms-overflow-style: none;
+  
+  /* 👑 加入這行：開啟「橫向 (x)」的強制滾動吸附 */
+  scroll-snap-type: x mandatory; 
+}
+.horizontal-scroll-container::-webkit-scrollbar {
+  display: none;
+}
+
+.panel {
+  flex-shrink: 0; 
+  height: 100vh;
+  width: 100vw; 
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  
+  /* 👑 加入這行：讓每一個 panel 滾動停止時，強制對齊視窗的「起點 (左側)」 */
+  scroll-snap-align: start; 
+}
+
+.panel-image {
+  width: 80vw; /* 圖片區塊稍微窄一點，營造畫廊感 */
+}
+
+/* =========================================
+   4. 各區塊排版細節
+========================================= */
+.category-header {
+  background-color: var(--header-bg);
+  padding: 0 10%;
+  align-items: flex-start;
+  border-right: 1px solid rgba(255, 255, 255, 0.05);
+}
+.category-header h1 {
+  color: var(--header-text);
+  font-weight: 800; 
+  font-size: 4rem;
+  margin: 0 0 5px 0;
+  letter-spacing: 2px;
+  line-height: 1.1;
+}
+.category-header .subtitle {
+  color: var(--header-accent);
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  margin-top: 10px;
+}
+.category-header .category-desc {
+  color: #8A93A8;
+  font-size: 1rem;
+  text-align: justify;
+  max-width: 600px;
+  margin-top: 40px;
+}
+
+.project-intro {
+  background-color: var(--project-bg);
+  padding: 0 10%;
+  align-items: flex-start;
+}
+.project-intro h2 {
+  color: var(--project-text-title);
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0 0 15px 0;
+  position: relative;
+  padding-left: 20px;
+  letter-spacing: 1px;
+}
+.project-intro h2::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 5px;
+  bottom: 5px;
+  width: 4px;
+  background-color: var(--project-accent);
+}
+.project-intro .tags {
+  font-size: 0.85rem;
+  color: var(--project-text-p);
+  letter-spacing: 1px;
+  display: block;
+  margin-bottom: 30px;
+}
+.project-intro p {
+  color: var(--project-text-p);
+  max-width: 600px;
+  text-align: justify;
+}
+
+.project-gallery {
+  background-color: var(--project-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 50px;
+}
+/* =========================================
+   作品圖片展示區塊
+========================================= */
+.mock-image {
+  width: 100%;
+  height: 80vh; /* 這是你原本設定的高度限制 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  /* 💡 把原本的假灰色底色改成透明，才不會在圖片旁邊露出灰邊 */
+  background-color: transparent; 
+  box-shadow: 0 20px 50px rgba(0,0,0,0.1); /* 如果你想要圖片有陰影可以保留 */
+}
+
+/* 👑 新增這一段：馴服所有放進去的真實圖片 */
+.mock-image img {
+  width: 100%;
+  height: 100%;
+  /* 關鍵魔法：讓圖片按比例縮放，完整塞進 80vh 的高度裡，絕對不變形也不撐爆 */
+  object-fit: contain; 
+}
+.theme-dark-tech  {
+  background-color: #ffffff; 
+  /* box-shadow: 0 20px 50px rgba(0,0,0,0.5); */
+}
+
+/* =========================================
+   滿版圖片介紹區塊 (只保留共用骨架)
+========================================= */
+.full-image-panel {
+  width: 100vw;
+  height: 100vh;
+  flex-shrink: 0;
+  
+  /* 👑 關鍵修改：將 contain 改為 cover，強制填滿無白邊 */
+  background-size: cover; 
+  
+  /* 讓圖片永遠以「正中心」為基準來放大與裁切 */
+  background-position: center; 
+  background-repeat: no-repeat; 
+}
+/* 👑 新增：品牌視覺設計專屬背景 */
+.cover-brand {
+  background-image: url('0627-03.png'); 
+  background-color: #ffffff; /* 配合你 Figma 畫布的底色 */
+}
+
+/* 👑 新增：包裝設計專屬背景 */
+.cover-packaging {
+  /* 👇 將引號內的檔名換成你包裝設計要放的圖片檔名 */
+  background-image: url('0627-17.png'); 
+  background-color: #ffffff; /* 如果這張圖的底色不同，可以在這裡獨立更改 */
+}
